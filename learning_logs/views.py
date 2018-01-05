@@ -1,7 +1,9 @@
+import json
+
 from django.shortcuts import render
 from .models import Topic, Entry, Info
-from .forms import TopicForm, EntryForm, InfoForm
-from django.http import HttpResponseRedirect, Http404, JsonResponse
+from .forms import TopicForm, EntryForm
+from django.http import HttpResponseRedirect, Http404, JsonResponse, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -75,8 +77,11 @@ def edit_entry(request, entry_id):
 @csrf_exempt
 def save_info(request):
     if request.method =='POST':
-        info = InfoForm()
-        info.name = request.POST.get('name')
-        info.age = request.POST.get('age')
-        info.sex = request.POST.get('sex')
+        info = Info()
+        data = json.loads(request.body)
+        print(info)
+        info.name = data['name']
+        info.age = data['age']
+        info.sex = data['sex']
         info.save()
+    return HttpResponse(1)

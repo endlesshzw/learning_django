@@ -28,7 +28,7 @@ class Entry(models.Model):
 class Info(models.Model):
 	name = models.CharField(max_length=200)
 	sex = models.CharField(max_length=200)
-	age = models.PositiveSmallIntegerField()
+	age = models.IntegerField()
 
 	def __str__(self):
 		return self.name
