@@ -10,6 +10,7 @@ urlpatterns = [
     path('new_entry/<int:topic_id>', views.new_entry, name='new_entry'),
     path('edit_entry/<int:entry_id>', views.edit_entry, name='edit_entry'),
     path('save_info/', views.save_info, name='save_info'),
+    path('show_info/', views.show_info, name='show_info'),
 ]
 
 app_name = 'learning_logs'

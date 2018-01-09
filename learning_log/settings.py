@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'learning_logs',
     'users',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

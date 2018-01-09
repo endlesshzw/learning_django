@@ -1,5 +1,6 @@
 import json
 
+from django.core import serializers
 from django.shortcuts import render
 from .models import Topic, Entry, Info
 from .forms import TopicForm, EntryForm
@@ -85,3 +86,10 @@ def save_info(request):
         info.sex = data['sex']
         info.save()
     return HttpResponse(1)
+
+@csrf_exempt
+def show_info(requeset):
+    if requeset.method =='POST':
+        data = Info.objects.all()
+        jso_data = serializers.serialize('json', data, fields=('name', 'sex'))
+    return HttpResponse(jso_data)
